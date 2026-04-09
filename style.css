@@ -1,0 +1,160 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #d6eaf8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Environment */
+.sky {
+    position: relative;
+    height: 60%;
+    background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.mountain {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 400px solid transparent;
+    border-right: 400px solid transparent;
+    border-bottom: 500px solid #ffffff;
+    z-index: 1;
+}
+
+.lake {
+    height: 40%;
+    background: linear-gradient(to bottom, #a2d2ff, #48cae4);
+    position: relative;
+    z-index: 10;
+    border-top: 5px solid #ffffff;
+}
+
+/* Counter UI */
+.counter-box {
+    position: absolute;
+    top: 50px;
+    text-align: center;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Penguin Structure */
+.penguin-container {
+    position: relative;
+    width: 160px;
+    height: 200px;
+    z-index: 15;
+    margin-bottom: -20px; /* Sits on the lake edge */
+    animation: situp-motion 2.5s ease-in-out infinite;
+}
+
+/* The actual "Sit-up" Animation */
+@keyframes situp-motion {
+    0%, 100% { transform: translateY(0) scaleY(1); }
+    50% { transform: translateY(50px) scaleY(0.75); } /* Squat down */
+}
+
+.penguin-body {
+    width: 150px;
+    height: 180px;
+    background: #2c3e50;
+    border-radius: 50% 50% 45% 45%;
+    position: relative;
+}
+
+.white-belly {
+    width: 120px;
+    height: 150px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+}
+
+/* Hands (Flippers) on Ears */
+.flipper {
+    width: 35px;
+    height: 80px;
+    background: #2c3e50;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 16;
+}
+
+.left-flipper {
+    left: -10px;
+    top: 10px;
+    transform: rotate(45deg); /* Reaching for ear */
+}
+
+.right-flipper {
+    right: -10px;
+    top: 10px;
+    transform: rotate(-45deg); /* Reaching for ear */
+}
+
+/* Face Details */
+.eye {
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 40px;
+}
+
+.left-eye { left: 35px; }
+.right-eye { right: 35px; }
+
+/* Sad eyebrows */
+.eye::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    width: 12px;
+    height: 3px;
+    background: #333;
+}
+.left-eye::after { transform: rotate(-20deg); left: -2px; }
+.right-eye::after { transform: rotate(20deg); right: -2px; }
+
+.beak {
+    width: 0; height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 15px solid #e67e22;
+    position: absolute;
+    top: 55px;
+    left: 48px;
+}
+
+.sad-mouth {
+    width: 20px;
+    height: 10px;
+    border-top: 2px solid #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 75px;
+    left: 50px;
+}
+
+.foot {
+    width: 40px;
+    height: 20px;
+    background: #e67e22;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+}
+.left-foot { left: 20px; }
+.right-foot { right: 100px; }
