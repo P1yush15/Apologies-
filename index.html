@@ -6,76 +6,194 @@
     <title>Apologetic Penguin Sit-ups</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB 0%, #E0F7FA 100%);
+            overflow: hidden;
             font-family: sans-serif;
         }
 
-        .container {
-            text-align: center;
+        /* Scene Setup */
+        .stage {
             position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Styling for the penguin image */
-        .penguin {
-            width: 300px; /* Adjust size as needed */
-            height: auto;
-            /* Important: Set transform origin to the bottom so it sits up */
-            transform-origin: bottom center;
-            
-            /* Apply the animation */
-            animation: situp 3s ease-in-out infinite;
-            
-            /* Add some depth/shadow to enhance the 3D look */
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
-        }
-
-        /* Positioning the "I'm Sorry" note separately */
-        .sorry-note {
+        /* Mountain */
+        .mountain {
             position: absolute;
-            bottom: -30px; /* Position it on the floor */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: -1; /* Keep it behind the penguin slightly */
-            opacity: 0.9;
+            bottom: 30%;
+            width: 0;
+            height: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-bottom: 400px solid #f0f4f5;
+            z-index: 1;
+        }
+        .mountain::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75px;
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 100px solid #ffffff;
         }
 
-        /* The Sit-up Animation */
+        /* Iced Lake */
+        .lake {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: #A5D6A7; /* fallback */
+            background: linear-gradient(180deg, #B2EBF2 0%, #4DD0E1 100%);
+            z-index: 2;
+        }
+
+        /* Penguin Container (The Squat Animation) */
+        .penguin-wrapper {
+            position: relative;
+            z-index: 3;
+            margin-top: 150px;
+            animation: situp 2s ease-in-out infinite;
+        }
+
         @keyframes situp {
-            0%, 100% {
-                /* Resting position */
-                transform: rotateX(0deg);
-            }
-            30% {
-                /* The crunch - leaning forward dramatically */
-                transform: rotateX(-50deg) translateY(20px);
-            }
-            60% {
-                /* Pausing slightly at the top for effort */
-                transform: rotateX(-45deg) translateY(15px);
-            }
-            100% {
-                /* Return to resting position */
-                transform: rotateX(0deg);
-            }
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            50% { transform: translateY(40px) scaleY(0.8); }
         }
 
-        /* Optional interaction: faster on hover */
-        .penguin:hover {
-            animation-duration: 1s;
+        /* Penguin Body */
+        .penguin {
+            position: relative;
+            width: 150px;
+            height: 180px;
+            background: #2c3e50;
+            border-radius: 50% 50% 40% 40%;
+        }
+
+        .belly {
+            position: absolute;
+            width: 110px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            bottom: 10px;
+            left: 20px;
+        }
+
+        /* Face */
+        .eye {
+            position: absolute;
+            width: 10px;
+            height: 12px;
+            background: #2c3e50;
+            border-radius: 50%;
+            top: 45px;
+        }
+        .eye.left { left: 50px; }
+        .eye.right { right: 50px; }
+
+        /* Sad Eyebrows */
+        .eye::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            width: 15px;
+            height: 3px;
+            background: #2c3e50;
+        }
+        .left::before { transform: rotate(-20deg); left: -2px; }
+        .right::before { transform: rotate(20deg); right: -2px; }
+
+        .beak {
+            position: absolute;
+            top: 65px;
+            left: 65px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid #f39c12;
+        }
+
+        /* Hands on Ears (Flippers) */
+        .flipper {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            background: #2c3e50;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 4;
+        }
+        .flipper.left {
+            left: -15px;
+            transform: rotate(40deg);
+        }
+        .flipper.right {
+            right: -15px;
+            transform: rotate(-40deg);
+        }
+
+        /* Feet */
+        .foot {
+            position: absolute;
+            bottom: -10px;
+            width: 40px;
+            height: 20px;
+            background: #f39c12;
+            border-radius: 50%;
+        }
+        .foot.left { left: 25px; }
+        .foot.right { right: 25px; }
+
+        /* Text */
+        .message {
+            position: absolute;
+            top: -100px;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 24px;
+            background: rgba(255,255,255,0.7);
+            padding: 10px;
+            border-radius: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="penguin.png" alt="Apologetic Penguin" class="penguin">
-        
-        <div class="sorry-note">I'm Sorry</div>
+    <div class="stage">
+        <div class="mountain"></div>
+        <div class="lake"></div>
+
+        <div class="penguin-wrapper">
+            <div class="message">"I'm so sorry!" <br> (1, 2, 3...)</div>
+            <div class="penguin">
+                <div class="flipper left"></div>
+                <div class="flipper right"></div>
+                <div class="belly">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                    <div class="beak"></div>
+                </div>
+                <div class="foot left"></div>
+                <div class="foot right"></div>
+            </div>
+        </div>
     </div>
 
 </body>
