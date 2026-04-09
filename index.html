@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apologetic Penguin Sit-ups</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        /* Styling for the penguin image */
+        .penguin {
+            width: 300px; /* Adjust size as needed */
+            height: auto;
+            /* Important: Set transform origin to the bottom so it sits up */
+            transform-origin: bottom center;
+            
+            /* Apply the animation */
+            animation: situp 3s ease-in-out infinite;
+            
+            /* Add some depth/shadow to enhance the 3D look */
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+
+        /* Positioning the "I'm Sorry" note separately */
+        .sorry-note {
+            position: absolute;
+            bottom: -30px; /* Position it on the floor */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1; /* Keep it behind the penguin slightly */
+            opacity: 0.9;
+        }
+
+        /* The Sit-up Animation */
+        @keyframes situp {
+            0%, 100% {
+                /* Resting position */
+                transform: rotateX(0deg);
+            }
+            30% {
+                /* The crunch - leaning forward dramatically */
+                transform: rotateX(-50deg) translateY(20px);
+            }
+            60% {
+                /* Pausing slightly at the top for effort */
+                transform: rotateX(-45deg) translateY(15px);
+            }
+            100% {
+                /* Return to resting position */
+                transform: rotateX(0deg);
+            }
+        }
+
+        /* Optional interaction: faster on hover */
+        .penguin:hover {
+            animation-duration: 1s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="penguin.png" alt="Apologetic Penguin" class="penguin">
+        
+        <div class="sorry-note">I'm Sorry</div>
+    </div>
+
+</body>
+</html>
